@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-US" class="country-US language-en">
+<head>
+  <title>loading state</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>loading state</h1>
+
+  <div id="loading-container" class="loading-container">
+    <loading-state id="loader"></loading-state>
+    <h2 id="success-msg" class="success">Success!</h2>
+    <h2 id="failure-msg" class="failure">Failure...</h2>
+  </div>
+
+  <br>
+
+  <button id="start">Start</button>
+  <button id="succeed">Succeed</button>
+  <button id="fail">Fail</button>
+  <button id="restart">Restart</button>
+
+  <script type="text/javascript" src="loader.js"></script>
+
+  <script type="text/javascript">
+    const loadingContainer = document.getElementById('loading-container');
+    const loader = document.getElementById('loader');
+    const start = document.getElementById('start');
+    const succeed = document.getElementById('succeed');
+    const fail = document.getElementById('fail');
+    const restart = document.getElementById('restart');
+
+    const success = document.getElementById('success-msg');
+    const failure = document.getElementById('failure-msg');
+
+    function toggleButtons(state) {
+      switch (state) {
+        case STATES.LOADING:
+          start.style.display = 'none';
+          succeed.style.display = '';
+          fail.style.display = '';
+          restart.style.display = '';
+          break;
+        case STATES.SUCCESS:
+          start.style.display = 'none';
+          succeed.style.display = 'none';
+          fail.style.display = 'none';
+          restart.style.display = '';
+          break;
+        case STATES.FAILURE:
+          start.style.display = 'none';
+          succeed.style.display = 'none';
+          fail.style.display = 'none';
+          restart.style.display = '';
+          break;
+        default:
+          start.style.display = '';
+          succeed.style.display = 'none';
+          fail.style.display = 'none';
+          restart.style.display = 'none';
+          break;
+      }
+    }
+
+    start.addEventListener('click', () => {
+      loader.setAttribute('state', STATES.LOADING);
+      toggleButtons(STATES.LOADING);
+    });
+    succeed.addEventListener('click', () => {
+      loader.setAttribute('state', STATES.SUCCESS);
+      toggleButtons(STATES.SUCCESS);
+    });
+    fail.addEventListener('click', () => {
+      loader.setAttribute('state', STATES.FAILURE);
+      toggleButtons(STATES.FAILURE);
+    });
+    restart.addEventListener('click', () => {
+      loader.removeAttribute('state');
+      toggleButtons();
+      // reset this page styles
+      loadingContainer.style.top = '';
+      success.style.opacity = '';
+      success.style.bottom = '';
+      failure.style.opacity = '';
+      failure.style.bottom = '';
+    });
+
+    toggleButtons();
+
+    loader.addEventListener('success', () => {
+      loadingContainer.style.top = 0;
+      success.style.opacity = 1;
+      success.style.bottom = 0;
+    });
+
+    loader.addEventListener('failure', () => {
+      loadingContainer.style.top = 0;
+      failure.style.opacity = 1;
+      failure.style.bottom = 0;
+    });
+  </script>
+</body>
+</html>

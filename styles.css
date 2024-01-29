@@ -1,0 +1,40 @@
+body {
+  --foreground: #929292;
+  --success-color: rgb(63, 230, 63);
+  --failure-color: rgb(255, 37, 37);
+  background-color: #171717;
+  color: var(--foreground);
+  margin-left: 50px;
+  text-align: center;
+}
+
+loading-state {
+  --spinner-color: var(--foreground);
+}
+
+.loading-container {
+  position: relative;
+  top: 25px;
+  transition: 0.75s ease-out;
+  padding-bottom: 28px;
+  margin-bottom: 28px;
+}
+
+.success {
+  color: var(--success-color);
+}
+
+.failure {
+  color: var(--failure-color);
+}
+
+.success, .failure {
+  opacity: 0;
+  transition: 0.5s ease-out;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  position: absolute;
+  bottom: -25px;
+  margin: 0;
+  left: 0; 
+  right: 0;
+}
