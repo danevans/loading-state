@@ -4,7 +4,6 @@ body {
   --failure-color: rgb(255, 37, 37);
   background-color: #171717;
   color: var(--foreground);
-  margin-left: 50px;
   text-align: center;
 }
 
